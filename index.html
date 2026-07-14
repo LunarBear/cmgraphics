@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NBGraphics | RSNA Publication Replica</title>
+    <style>
+        /* Réinitialisation et Variables */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --rsna-blue: #003366;
+            --rsna-dark-blue: #002244;
+            --text-color: #333333;
+            --light-bg: #f8f9fa;
+            --border-color: #e0e0e0;
+            --link-color: #006699;
+            --hover-color: #004466;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: #ffffff;
+        }
+
+        a {
+            color: var(--link-color);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* En-tête RSNA */
+        header {
+            border-bottom: 4px solid var(--rsna-blue);
+        }
+
+        .top-bar {
+            background-color: var(--rsna-dark-blue);
+            color: #ffffff;
+            padding: 8px 20px;
+            font-size: 13px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .top-bar a {
+            color: #ffffff;
+            margin-left: 15px;
+        }
+
+        .main-header {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-rsna {
+            font-weight: 800;
+            font-size: 24px;
+            color: var(--rsna-blue);
+            letter-spacing: 1px;
+        }
+
+        .journal-title {
+            font-size: 20px;
+            font-weight: 400;
+            color: #555;
+            border-left: 1px solid var(--border-color);
+            padding-left: 15px;
+        }
+
+        /* Navigation de recherche */
+        .search-nav {
+            background-color: var(--light-bg);
+            border-bottom: 1px solid var(--border-color);
+            padding: 10px 20px;
+        }
+
+        .search-nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        /* Conteneur principal */
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 40px;
+        }
+
+        /* Section Article (Gauche) */
+        article {
+            font-family: Georgia, Cambria, "Times New Roman", Times, serif; /* Style académique */
+        }
+
+        .article-category {
+            font-family: sans-serif;
+            text-transform: uppercase;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--rsna-blue);
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        h1.article-title {
+            font-size: 32px;
+            line-height: 1.2;
+            color: #111111;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .authors {
+            font-family: sans-serif;
+            font-size: 15px;
+            margin-bottom: 15px;
+            color: #222;
+        }
+
+        .authors span {
+            cursor: pointer;
+            border-bottom: 1px dotted #888;
+        }
+
+        .metadata {
+            font-family: sans-serif;
+            font-size: 13px;
+            color: #666;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 20px;
+            margin-bottom: 25px;
+        }
+
+        .metadata p {
+            margin-bottom: 5px;
+        }
+
+        /* Structure du contenu de l'article */
+        .article-body h2 {
+            font-family: sans-serif;
+            font-size: 20px;
+            color: var(--rsna-blue);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
+            margin-top: 35px;
+            margin-bottom: 15px;
+        }
+
+        .article-body p {
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        /* Sidebar (Droite) */
+        aside {
+            background-color: #ffffff;
+        }
+
+        .sidebar-section {
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: var(--light-bg);
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color: var(--rsna-blue);
+            color: #ffffff;
+            text-align: center;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 14px;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            margin-bottom: 10px;
+            transition: background-color 0.2s;
+        }
+
+        .btn:hover {
+            background-color: var(--rsna-dark-blue);
+            text-decoration: none;
+        }
+
+        .btn-secondary {
+            background-color: #ffffff;
+            color: var(--rsna-blue);
+            border: 1px solid var(--rsna-blue);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--rsna-light-blue);
+        }
+
+        .sidebar-nav-title {
+            font-weight: bold;
+            font-size: 14px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            color: #444;
+            border-bottom: 2px solid var(--rsna-blue);
+            padding-bottom: 5px;
+        }
+
+        .sidebar-nav-links {
+            list-style: none;
+        }
+
+        .sidebar-nav-links li {
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .sidebar-nav-links a {
+            color: #555;
+        }
+
+        .sidebar-nav-links a:hover {
+            color: var(--rsna-blue);
+            font-weight: bold;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            
+            aside {
+                order: -1; /* Place la barre d'outils en haut sur mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="top-bar">
+            <div>Radiological Society of North America (RSNA)</div>
+            <div>
+                <a href="#">Connexion</a>
+                <a href="#">S'abonner</a>
+                <a href="#">Aide</a>
+            </div>
+        </div>
+        <div class="main-header">
+            <div class="logo-area">
+                <span class="logo-rsna">RSNA</span>
+                <span class="journal-title">RadioGraphics</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation de recherche -->
+    <div class="search-nav">
+        <div class="search-nav-container">
+            <div>
+                <a href="#" style="margin-right: 15px; font-weight: bold;">Articles récents</a>
+                <a href="#">Numéros</a>
+                <a href="#">Pour les auteurs</a>
+            </div>
+            <div>
+                <input type="text" placeholder="Rechercher..." style="padding: 5px 10px; border: 1px solid #ccc; border-radius: 3px;">
+                <button style="padding: 5px 10px; background: var(--rsna-blue); color: white; border: none; border-radius: 3px; cursor: pointer;">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        
+        <!-- Contenu de l'article (Gauche) -->
+        <main>
+            <article>
+                <div class="article-category">Review Article</div>
+                
+                <h1 class="article-title">Titre de l'Article Scientifique (DOI: 10.1148/rg.250173)</h1>
+                
+                <div class="authors">
+                    <span>Jean Dupont, MD</span>, <span>Marie Martin, PhD</span>, <span>Pierre Dubois, MD</span>
+                </div>
+                
+                <div class="metadata">
+                    <p><strong>Publié en Ligne :</strong> 1 Janvier 2005 | <a href="https://doi.org/10.1148/rg.250173">https://doi.org/10.1148/rg.250173</a></p>
+                    <p><strong>RadioGraphics Vol. 25, No. 1</strong></p>
+                </div>
+
+                <div class="article-body">
+                    <h2>Résumé (Abstract)</h2>
+                    <p>
+                        Ceci est un emplacement pour le résumé de votre article. Le design respecte les proportions typographiques des revues médicales de la RSNA. Les polices avec empattement (serif) à l'intérieur du corps de l'article facilitent une lecture prolongée et confortable des rapports cliniques et des études d'imagerie.
+                    </p>
+
+                    <h2>Introduction</h2>
+                    <p>
+                        L'introduction commence ici. Vous pouvez remplacer ce texte par le contenu réel de votre article. Les paragraphes sont espacés et dimensionnés selon les standards d'affichage de la plateforme d'édition RSNA Pubs. 
+                    </p>
+                    <p>
+                        L'imagerie médicale moderne s'appuie sur des protocoles stricts de standardisation. Dans cet article, nous passons en revue les points clés qui caractérisent l'interprétation diagnostique de cette étude spécifique.
+                    </p>
+
+                    <h2>Sections Cliniques</h2>
+                    <p>
+                        Ajoutez autant de sections ou de paragraphes que nécessaire pour correspondre au contenu original de la publication. Vous pouvez également intégrer des images ou des figures en utilisant la balise standard <code>&lt;img&gt;</code>.
+                    </p>
+                </div>
+            </article>
+        </main>
+
+        <!-- Sidebar d'outils (Droite) -->
+        <aside>
+            <div class="sidebar-section">
+                <button class="btn">Télécharger le PDF</button>
+                <button class="btn btn-secondary">Ajouter aux Favoris</button>
+                <button class="btn btn-secondary">Partager l'article</button>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-nav-title">Navigation de l'article</div>
+                <ul class="sidebar-nav-links">
+                    <li><a href="#">Résumé</a></li>
+                    <li><a href="#">Introduction</a></li>
+                    <li><a href="#">Images & Figures</a></li>
+                    <li><a href="#">Discussion</a></li>
+                    <li><a href="#">Références</a></li>
+                </ul>
+            </div>
+
+            <div class="sidebar-section" style="font-size: 13px; color: #666;">
+                <div class="sidebar-nav-title" style="border-bottom: 2px solid #666;">Métriques de l'article</div>
+                <p style="margin-top: 10px;"><strong>Citations :</strong> 42</p>
+                <p><strong>Vues :</strong> 1,204</p>
+            </div>
+        </aside>
+
+    </div>
+
+</body>
+</html>
