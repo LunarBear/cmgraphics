@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NBGraphics | RSGVA Publication</title>
+    <title>Annexes - NBGraphics | RSGVA Publication</title>
     <style>
         /* Réinitialisation et Variables */
         * {
@@ -133,8 +133,26 @@
             font-size: 32px;
             line-height: 1.2;
             color: #111111;
-            margin-bottom: 20px;
+            margin-bottom: 5px;
             font-weight: 500;
+        }
+
+        .article-subtitle {
+            font-family: sans-serif;
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        .back-link {
+            font-family: sans-serif;
+            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 20px;
+            font-weight: 600;
         }
 
         .authors {
@@ -178,78 +196,6 @@
             line-height: 1.7;
             margin-bottom: 20px;
             color: #333;
-        }
-
-        /* Styles exclusifs pour l'encadré Paywall */
-        .paywall-container {
-            text-align: center;
-            border-top: 1px solid var(--border-color);
-            padding-top: 50px;
-            margin-top: 50px;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        }
-
-        .paywall-title {
-            font-size: 32px;
-            font-weight: 700;
-            color: #000000;
-            margin-bottom: 15px;
-            letter-spacing: -0.5px;
-        }
-
-        .paywall-subtitle {
-            font-size: 17px;
-            color: #333333;
-            margin-bottom: 30px;
-        }
-
-        .btn-paywall {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            background-color: #00823F; /* Vert émeraude RSNA exact */
-            color: #ffffff !important;
-            padding: 12px 28px;
-            border-radius: 25px; /* Forme pilule */
-            font-weight: bold;
-            font-size: 13px;
-            text-transform: uppercase;
-            border: none;
-            cursor: pointer;
-            text-decoration: none;
-            transition: background-color 0.2s;
-            margin-bottom: 35px;
-            letter-spacing: 0.8px;
-        }
-
-        .btn-paywall:hover {
-            background-color: #006631;
-            text-decoration: none !important;
-        }
-
-        .btn-paywall svg {
-            width: 14px;
-            height: 14px;
-            fill: #ffffff;
-        }
-
-        .paywall-footer {
-            font-size: 12px;
-            color: #555555;
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
-            font-weight: 400;
-        }
-
-        .paywall-footer a {
-            color: #0056b3;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .paywall-footer a:hover {
-            text-decoration: underline;
         }
 
         /* Sidebar (Droite) */
@@ -378,9 +324,18 @@
         <!-- Contenu de l'article (Gauche) -->
         <main>
             <article>
-                <div class="article-category">Review Article</div>
+                <div class="article-category">Supplemental Material</div>
                 
-                <h1 class="article-title">Méta-analyse : Céline Maret et Nicolas Berla sont-ils des gens biens ? (DOI: 10.1148/rg.250173)</h1>
+                <h1 class="article-title">Céline Maret et Nicolas Berla sont-ils des gens biens ?</h1>
+                <div class="article-subtitle">Annexes de l'étude (DOI: 10.1148/rg.250173)</div>
+                
+                <a href="index.html" class="back-link">
+                    <!-- Flèche retour en SVG -->
+                    <svg width="12" height="12" viewBox="0 0 448 512" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H109.2L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/>
+                    </svg>
+                    Retour à l'article principal
+                </a>
                 
                 <div class="authors">
                     <span>N. Berla, MD</span>, <span>N. Berlá, PhD</span>, <span>N. Berlă, MD</span>
@@ -392,29 +347,10 @@
                 </div>
 
                 <div class="article-body">
-                    <h2>Résumé (Abstract)</h2>
+                    <h2>Annexe A : Matériel et données supplémentaires</h2>
                     <p>
-                        La réponse est oui. Voir <a href="annexes.html">annexes</a>.
+                        Et ils vont même bien ensemble.
                     </p>
-
-                    <!-- Section d'accès verrouillé (Paywall) -->
-                    <div class="paywall-container">
-                        <div class="paywall-title">Get full access to this article</div>
-                        <div class="paywall-subtitle">View all available purchase options and get full access to this article.</div>
-                        
-                        <a href="#" class="btn-paywall">
-                            <!-- Icône Cadenas vectoriel pour le bouton -->
-                            <svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M400 224h-24v-72C376 68.2 307.8 0 224 0S72 68.2 72 152v72H48c-26.5 0-48 21.5-48 48v192c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V272c0-26.5-21.5-48-48-48zm-104 0H152v-72c0-39.7 32.3-72 72-72s72 32.3 72 72v72z"/>
-                            </svg>
-                            Get Access
-                        </a>
-                        
-                        <div class="paywall-footer">
-                            Already a subscriber? Sign in as an <a href="#">individual</a> or via your <a href="#">institution</a>
-                        </div>
-                    </div>
-
                 </div>
             </article>
         </main>
@@ -428,13 +364,10 @@
             </div>
 
             <div class="sidebar-section">
-                <div class="sidebar-nav-title">Navigation de l'article</div>
+                <div class="sidebar-nav-title">Navigation des annexes</div>
                 <ul class="sidebar-nav-links">
-                    <li><a href="#">Résumé</a></li>
-                    <li><a href="#">Introduction</a></li>
-                    <li><a href="#">Images & Figures</a></li>
-                    <li><a href="#">Discussion</a></li>
-                    <li><a href="#">Références</a></li>
+                    <li><a href="#" style="font-weight: bold; color: var(--rsna-blue);">Annexe A</a></li>
+                    <li><a href="index.html">Retour à l'article</a></li>
                 </ul>
             </div>
 
