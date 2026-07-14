@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Achat d'Article - RSGVA Publications</title>
+    <style>
+        /* Réinitialisation et Variables */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --rsna-blue: #003366;
+            --rsna-dark-blue: #002244;
+            --text-color: #333333;
+            --light-bg: #f8f9fa;
+            --border-color: #e0e0e0;
+            --link-color: #006699;
+            --success-green: #00823F;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: #f4f6f8;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* En-tête simplifié pour le paiement */
+        header {
+            background-color: #ffffff;
+            border-bottom: 3px solid var(--rsna-blue);
+            padding: 15px 20px;
+        }
+
+        .header-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-area {
+            font-weight: 800;
+            font-size: 20px;
+            color: var(--rsna-blue);
+            letter-spacing: 1px;
+        }
+
+        .secure-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: #666;
+            font-weight: 600;
+        }
+
+        .secure-badge svg {
+            width: 16px;
+            height: 16px;
+            fill: var(--success-green);
+        }
+
+        /* Conteneur principal */
+        .checkout-container {
+            max-width: 650px;
+            margin: 40px auto;
+            width: 90%;
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+
+        .checkout-header {
+            background-color: var(--light-bg);
+            padding: 20px 30px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .checkout-header h1 {
+            font-size: 20px;
+            color: #111;
+            font-weight: 600;
+        }
+
+        .checkout-body {
+            padding: 30px;
+        }
+
+        /* Récapitulatif de la commande */
+        .order-summary {
+            background-color: #fdfdfd;
+            border: 1px dashed #ccc;
+            border-radius: 6px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .order-title {
+            font-size: 13px;
+            text-transform: uppercase;
+            font-weight: bold;
+            color: #666;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .item-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--rsna-blue);
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--border-color);
+            padding-top: 15px;
+        }
+
+        .price-label {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .price-value {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--success-green);
+        }
+
+        /* Formulaire de validation fantaisiste */
+        .payment-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #444;
+        }
+
+        .form-select, .form-input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 15px;
+            background-color: #fff;
+        }
+
+        .form-checkbox {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 14px;
+            color: #555;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .form-checkbox input {
+            margin-top: 4px;
+        }
+
+        /* Bouton d'action */
+        .btn-submit {
+            background-color: var(--success-green);
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: background-color 0.2s;
+            text-align: center;
+            text-decoration: none;
+            margin-top: 10px;
+        }
+
+        .btn-submit:hover {
+            background-color: #006631;
+        }
+
+        .cancel-link {
+            text-align: center;
+            display: block;
+            margin-top: 15px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .cancel-link:hover {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header de paiement sécurisé -->
+    <header>
+        <div class="header-container">
+            <div class="logo-area">RSGVA <span style="font-weight: 300; color: #666;">| Secure Checkout</span></div>
+            <div class="secure-badge">
+                <svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M400 224h-24v-72C376 68.2 307.8 0 224 0S72 68.2 72 152v72H48c-26.5 0-48 21.5-48 48v192c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V272c0-26.5-21.5-48-48-48zm-104 0H152v-72c0-39.7 32.3-72 72-72s72 32.3 72 72v72z"/>
+                </svg>
+                Paiement 100% Chaleureux
+            </div>
+        </div>
+    </header>
+
+    <!-- Conteneur de Checkout -->
+    <div class="checkout-container">
+        <div class="checkout-header">
+            <h1>Sélectionner un moyen de paiement</h1>
+        </div>
+        
+        <div class="checkout-body">
+            <!-- Récapitulatif de l'article -->
+            <div class="order-summary">
+                <div class="order-title">Votre commande</div>
+                <div class="item-name">Méta-analyse : Céline Maret et Nicolas Berla sont-ils des gens biens ? (Accès Illimité)</div>
+                
+                <div class="price-row">
+                    <span class="price-label">Montant à régler :</span>
+                    <span class="price-value">1 Paris-Brest</span>
+                </div>
+            </div>
+
+            <!-- Formulaire de "paiement" rigolo -->
+            <form class="payment-form" onsubmit="alert('Félicitations ! Votre commande de Paris-Brest a bien été transmise à Céline. L\'accès à l\'article vous sera accordé dès la première bouchée !'); return false;">
+                
+                <div class="form-group">
+                    <label for="cuisson">Degré de cuisson de la pâte à choux souhaité :</label>
+                    <select id="cuisson" class="form-select" required>
+                        <option value="">-- Choisir une option --</option>
+                        <option value="dore">Parfaitement dorée et croustillante</option>
+                        <option value="moelleux">Légèrement moelleuse</option>
+                        <option value="expert">Selon l'inspiration artistique de Céline</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="sucre">Quantité de sucre glace sur le dessus :</label>
+                    <select id="sucre" class="form-select" required>
+                        <option value="">-- Choisir une option --</option>
+                        <option value="standard">Saupoudrage académique (standard)</option>
+                        <option value="tempete">Effet "tempête de neige à Genève" (abondant)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="livraison">Date de livraison estimée du gâteau :</label>
+                    <input type="date" id="livraison" class="form-input" required>
+                </div>
+
+                <label class="form-checkbox">
+                    <input type="checkbox" required>
+                    <span>Je certifie sur l'honneur que ce Paris-Brest sera préparé avec amour par Céline Maret et dégusté en compagnie de Nicolas Berla.</span>
+                </label>
+
+                <!-- Bouton de validation -->
+                <button type="submit" class="btn-submit">Confirmer la commande du gâteau</button>
+            </form>
+
+            <a href="index.html" class="cancel-link">Annuler la transaction et retourner à l'article</a>
+        </div>
+    </div>
+
+</body>
+</html>
