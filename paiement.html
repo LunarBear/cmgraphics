@@ -142,7 +142,7 @@
             color: var(--success-green);
         }
 
-        /* Formulaire de validation fantaisiste */
+        /* Formulaire */
         .payment-form {
             display: flex;
             flex-direction: column;
@@ -251,45 +251,100 @@
                 </div>
             </div>
 
-            <!-- Formulaire de "paiement" rigolo -->
-            <form class="payment-form" onsubmit="alert('Félicitations ! Votre commande de Paris-Brest a bien été transmise à Céline. L\'accès à l\'article vous sera accordé dès la première bouchée !'); return false;">
+            <!-- Formulaire de paiement lié à Web3Forms -->
+            <form id="payment-form" class="payment-form">
                 
+                <!-- /!\ REMPLACEZ LA VALEUR CI-DESSOUS PAR VOTRE CLÉ WEB3FORMS /!\ -->
+                <input type="hidden" name="access_key" value="7eebb737-029b-44a1-8966-5af9ec0232b7">
+                
+                <!-- Titre personnalisé de l'e-mail que vous allez recevoir -->
+                <input type="hidden" name="subject" value="Nouvelle commande de Paris-Brest !">
+                <!-- Supprime la page de remerciement par défaut de web3forms -->
+                <input type="hidden" name="redirect" value=""> 
+
                 <div class="form-group">
                     <label for="cuisson">Degré de cuisson de la pâte à choux souhaité :</label>
-                    <select id="cuisson" class="form-select" required>
+                    <select id="cuisson" name="cuisson" class="form-select" required>
                         <option value="">-- Choisir une option --</option>
-                        <option value="dore">Parfaitement dorée et croustillante</option>
-                        <option value="moelleux">Légèrement moelleuse</option>
-                        <option value="expert">Selon l'inspiration artistique de Céline</option>
+                        <option value="Doree et croustillante">Parfaitement dorée et croustillante</option>
+                        <option value="Moelleuse">Légèrement moelleuse</option>
+                        <option value="Inspiration de Celine">Selon l'inspiration artistique de Céline</option>
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label for="sucre">Quantité de sucre glace sur le dessus :</label>
-                    <select id="sucre" class="form-select" required>
+                    <select id="sucre" name="sucre" class="form-select" required>
                         <option value="">-- Choisir une option --</option>
-                        <option value="standard">Saupoudrage académique (standard)</option>
-                        <option value="tempete">Effet "tempête de neige à Genève" (abondant)</option>
+                        <option value="Standard">Saupoudrage académique (standard)</option>
+                        <option value="Abondant">Effet "tempête de neige à Genève" (abondant)</option>
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label for="livraison">Date de livraison estimée du gâteau :</label>
-                    <input type="date" id="livraison" class="form-input" required>
+                    <input type="date" id="livraison" name="date_livraison" class="form-input" required>
                 </div>
 
                 <label class="form-checkbox">
-                    <input type="checkbox" required>
+                    <input type="checkbox" name="engagement_honneur" value="Oui, accepte" required>
                     <span>Je certifie sur l'honneur que ce Paris-Brest sera préparé avec amour par Céline Maret et dégusté en compagnie de Nicolas Berla.</span>
                 </label>
 
                 <!-- Bouton de validation -->
-                <button type="submit" class="btn-submit">Confirmer la commande du gâteau</button>
+                <button type="submit" id="submit-btn" class="btn-submit">Confirmer la commande du gâteau</button>
             </form>
 
             <a href="index.html" class="cancel-link">Annuler la transaction et retourner à l'article</a>
         </div>
     </div>
+
+    <!-- Script pour envoyer l'e-mail de manière transparente -->
+    <script>
+        const form = document.getElementById('payment-form');
+        const submitBtn = document.getElementById('submit-btn');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // On change le texte du bouton pendant l'envoi
+            submitBtn.textContent = "Transmission en cours...";
+            submitBtn.disabled = true;
+
+            const formData = new FormData(form);
+            const object = Object.fromEntries(formData);
+            const json = JSON.stringify(object);
+
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: json
+            })
+            .then(async (response) => {
+                let jsonResponse = await response.json();
+                if (response.status == 200) {
+                    // Succès ! On affiche le message personnalisé
+                    alert("Félicitations ! Votre commande de Paris-Brest a bien été transmise à Céline. L'accès à l'article vous sera accordé dès la première bouchée !");
+                    // Redirection vers l'article après l'alerte
+                    window.location.href = "index.html";
+                } else {
+                    console.log(jsonResponse);
+                    alert("Oups, une petite erreur technique est survenue.");
+                    submitBtn.textContent = "Confirmer la commande du gâteau";
+                    submitBtn.disabled = false;
+                }
+            })
+            .catch(error => {
+                console.log(error);
+                alert("Erreur de connexion lors de l'envoi.");
+                submitBtn.textContent = "Confirmer la commande du gâteau";
+                submitBtn.disabled = false;
+            });
+        });
+    </script>
 
 </body>
 </html>
